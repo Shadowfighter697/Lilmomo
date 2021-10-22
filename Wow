@@ -1,0 +1,41 @@
+class MultipleChoice:
+    def __init__(self, question, answers, right_answer):
+        self.question = question
+        self.answers = answers
+        self.right_answer = int(right_answer)
+
+    def checkanswer(self):
+        ans = int(input("Pick one of the choices: "))
+        if ans == self.right_answer:
+            print("Correct answer")
+            return True
+        elif ans < 5:
+            print("Wrong answer")
+        else:
+            print("That is not an option")
+
+    def __str__(self):
+        multiple_choice = ""
+        for i in range(len(self.answers)):
+            multiple_choice += f"{i+1}) {self.answers[i]} \n"
+        return f"{self.question} \n{multiple_choice}"
+
+
+if __name__ == "__main__":
+    q1 = "Hvilken sang er best?"
+    q2 = "Hvilken film er best?"
+    q3 = "Hvor mange dager er det i Februar i år?"
+    q4 = "Hvilken serie er best?"
+    questions = [q1, q2, q3, q4]
+    answers = [["Ransom", "XO Tour Lif3", "Grenade", "Bank Account"], ["Wolf of Wall Street", "Inception", "Interstellar", "It"],
+               ["28", "29", "30", "31"],
+               ["Game Of Thrones", "Breaking bad", "Prison break", "Dark"]]
+    correct_ans = [2, 2, 1, 1]
+    numCorrectAns = 0
+    for i in range(len(questions)):
+        multi = MultipleChoice(questions[i], answers[i], correct_ans[i])
+        print(multi)
+        if multi.checkanswer():
+            numCorrectAns += 1
+        print()
+    print(f"You got {numCorrectAns} correct answers")
